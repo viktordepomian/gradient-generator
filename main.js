@@ -1,20 +1,18 @@
 const VALUES = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'];
-const BODY = document.body;
-let gradientText = document.querySelector('.gradient-text');
+let hex1 = '';
+let hex2 = '';
 
-function outputAll(color){
-    gradientText.textContent = `background: linear-gradient(45deg, ${color}, ${color})`;
-}
+document.querySelector('.generate-color').addEventListener('click', function(){
+    gradientGenerator();
+});
 
 function gradientGenerator(){
-    let hex = '#';
-
+    hex1 = '', hex2 = '';
     for(let i = 0; i < 6; i++){
-        const index = Math.floor(Math.random() * VALUES.length);
-        hex += VALUES[index];
+        hex1 += VALUES[Math.floor(Math.random() * VALUES.length)];
+        hex2 += VALUES[Math.floor(Math.random() * VALUES.length)];
     };
-    BODY.style.backgroundColor = hex;
-    return hex;
+    document.querySelector('.hex1').textContent = hex1;
+    document.querySelector('.hex2').textContent = hex2;
+    document.body.style.background = `linear-gradient(45deg, #${hex1}, #${hex2})`;
 };
-
-outputAll(gradientGenerator());
